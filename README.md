@@ -1,19 +1,11 @@
-# Cloudflare Workers Example
+# Dart(WebAssembly) + Cloudflare Workers 実装テスト
 
-This template demonstrates how to run a [Cloudflare Workers](https://workers.cloudflare.com/) application via Dart Edge.
-
-## Getting Started
-
-Install the dependencies:
+## How to build
 
 ```bash
-dart pub get
+fvm install
+pnpm install
+
+pnpm run dev # ローカルでの実行
+pnpm run deploy # デプロイ
 ```
-
-Start the application via the [Wranger CLI](https://developers.cloudflare.com/workers/wrangler/):
-
-```bash
-wrangler dev --local
-```
-
-For more information, see the [Dart Edge documentation](https://docs.dartedge.dev).

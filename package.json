@@ -1,0 +1,12 @@
+{
+  "name": "dart_edge_sample",
+  "scripts": {
+    "dev": "pnpm run pre-compile && wrangler dev src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "pre-compile": "fvm dart compile wasm ./bin/main.dart -o src/__dart/main.wasm"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240903.0",
+    "wrangler": "^3.75.0"
+  }
+}
