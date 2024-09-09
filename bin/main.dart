@@ -1,15 +1,18 @@
 import 'dart:js_interop';
 
-import 'package:http/http.dart' as http;
+// JSResponseを使いたいので cf_workers を入れています．
+import 'package:cf_workers/src/http.dart';
 
 @JS()
-external void responseMessage(JSString message);
+external JSPromise<JSResponse> fetch(JSString url);
+
+// Dartの結果をresultを通して渡しています
+@JS('__js.result')
+external void result(JSResponse response);
 
 void main(List<String> arguments) async {
-  // 普通にHTTP Packageでできる...?
-  // ref: https://github.com/vasilev/HTTP-request-from-inside-WASM?tab=readme-ov-file#dart
-  final resp = await http.get(Uri.parse('https://httpbin.org/anything'));
-  print(resp.body);
-
-  responseMessage(resp.body.toJS);
+  final JSResponse resp =
+      await fetch('https://httpbin.org/anything'.toJS).toDart;
+  print(resp);
+  result(resp);
 }
