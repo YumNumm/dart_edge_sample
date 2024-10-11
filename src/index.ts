@@ -6,15 +6,19 @@ export default {
   async fetch(
     request: Request,
     env: {},
-    ctx: ExecutionContext
+    ctx: ExecutionContext,
   ): Promise<Response> {
     let responseMessage: string;
-    (globalThis as any).responseMessage = (message: string) => {
-      responseMessage = message;
-    };
+    const instance = await instantiate(mod, Promise.resolve({}));
 
-    invoke(await instantiate(mod, async () => ({})));
-
-    return new Response(responseMessage!);
+    return new Promise((resolve) => {
+      // Dart側で発生したPromiseをinvokeで受け持つことが現状できないので，このような作りにしています．
+      invoke(instance);
+      (globalThis as any).__js = {
+        result(response: Response) {
+          resolve(response);
+        },
+      };
+    });
   },
 };
