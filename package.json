@@ -6,7 +6,7 @@
     "pre-compile": "fvm dart compile wasm ./bin/main.dart -o src/__dart/main.wasm"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240903.0",
-    "wrangler": "^3.75.0"
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "wrangler": "^3.111.0"
   }
 }
