@@ -1,8 +1,8 @@
 {
   "name": "dart_edge_sample",
   "scripts": {
-    "dev": "pnpm run pre-compile && wrangler dev src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts",
+    "dev": "pnpm run pre-compile && wrangler dev src/index.ts --port 8787",
+    "deploy": "pnpm run pre-compile && wrangler deploy --minify src/index.ts",
     "pre-compile": "fvm dart compile wasm ./bin/main.dart -o src/__dart/main.wasm"
   },
   "devDependencies": {
