@@ -5,7 +5,7 @@ import { ExecutionContext } from "@cloudflare/workers-types";
 export default {
   async fetch(
     request: Request,
-    env: {},
+    env: never,
     ctx: ExecutionContext,
   ): Promise<Response> {
     let responseMessage: string;
